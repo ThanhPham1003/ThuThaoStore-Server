@@ -16,6 +16,9 @@ app.use(cors());
 const usersRoute = require('../routes/users');
 app.use('/users', usersRoute);
 
+const productsRoute = require('../routes/products');
+app.use('/products', productsRoute);
+
 
 //app.use(middleware.decodeToken);
 
