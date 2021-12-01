@@ -12,7 +12,8 @@ app.use(express.json({ extended: false }))
 
 app.use(cors());
 
-
+app.use('/uploads',express.static('uploads'))
+app.use('/uploadUsers',express.static('uploadUsers'))
 const usersRoute = require('../routes/users');
 app.use('/users', usersRoute);
 
@@ -20,8 +21,10 @@ const productsRoute = require('../routes/products');
 app.use('/products', productsRoute);
 
 
-//app.use(middleware.decodeToken);
-
+app.use(middleware.decodeToken);
+app.get('', (req,res) => {
+  res.send('Verified');
+})
 
 app.listen(port, () => {
   console.log('server is running in port 5000')
