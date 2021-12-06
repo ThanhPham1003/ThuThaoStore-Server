@@ -36,11 +36,11 @@ router.post('/allproducts', upload.single('productImage'),async (req, res) => {
   const product = new Product({
         uid : req.body.uid,
         name: req.body.name,
-        age: req.body.age,
-        color: req.body.color,
         price: req.body.price,
-        // url: req.body.url,
-        url:req.file.path
+        code: req.body.code,
+        orderquantity: req.body.orderquantity,
+        daysubmitted: req.body.daysubmitted,
+        url:req.file.path,
     });
     res.send("succesfull");
   try{
@@ -82,8 +82,9 @@ router.patch('/:productID', async (req, res) =>{
       {_id: req.params.productID},
       { $set:{
         name: req.body.headers.name,
-        age: req.body.headers.age,
-        color: req.body.headers.color,
+        orderquantity: req.body.headers.orderquantity,
+        code: req.body.headers.code,
+        daysubmitted: req.body.headers.daysubmitted,
         price: parseInt(req.body.headers.price),
       }}
 

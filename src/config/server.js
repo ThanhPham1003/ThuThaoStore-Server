@@ -20,6 +20,11 @@ app.use('/users', usersRoute);
 const productsRoute = require('../routes/products');
 app.use('/products', productsRoute);
 
+const clientsRoute = require('../routes/clients');
+app.use('/clients', clientsRoute);
+
+const ordersRoute = require('../routes/orders');
+app.use('/orders', ordersRoute);
 
 app.use(middleware.decodeToken);
 app.get('', (req,res) => {

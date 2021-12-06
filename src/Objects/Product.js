@@ -9,17 +9,21 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required:true,
   },
-  age:{
-    type: String,
-    required: true,
-  },
-  color:{
-      type: String,
-      required: true,
-  },
   price:{
     type: Number,
     required: true,
+  },
+  code:{
+    type: String,
+    required:true,
+  },
+  orderquantity:{
+    type: String,
+    required:true,
+  },
+  daysubmitted:{
+    type: String,
+    required:true,
   },
   url:{
     type: String,
