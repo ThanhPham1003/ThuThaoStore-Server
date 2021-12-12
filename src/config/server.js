@@ -31,6 +31,6 @@ app.get('', (req,res) => {
   res.send('Verified');
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('server is running in port 5000')
 })
