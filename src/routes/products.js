@@ -91,7 +91,7 @@ router.patch('/:productID', async (req, res) =>{
       }}
 
     );
-    res.send("Updated")
+    res.json('Updated')
   }catch(err){
     res.send({message: err});
   }
