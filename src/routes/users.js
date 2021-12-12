@@ -28,7 +28,7 @@ router.get('/:uid', async (req,res) => {
     const user = await User.findById(req.params.uid);
     res.json(user);
   }catch(err){
-    res.json({message: err});
+   res.json({message: err});
 }
 })
 
@@ -46,7 +46,7 @@ router.post('/',  uploadUsers.single('userImage'),async (req, res) => {
     const saveUser = await user.save();
     res.json(saveUser);
   }catch(err){
-    res.json({message: err});
+   res.json({message: err});
   }
 })
 router.post('/:uid',  uploadUsers.single('userImage'),async (req, res) => {

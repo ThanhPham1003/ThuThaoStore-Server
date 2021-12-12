@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const ClientSchema = new mongoose.Schema({
+    uid: {
+        type: String,
+        require: true,
+    },
     name:{
         type: String,
         required:true,
@@ -15,10 +19,6 @@ const ClientSchema = new mongoose.Schema({
     },
     phone:{
         type: String,
-        required:true,
-    },
-    deposit:{
-        type: Number,
         required:true,
     },
 });

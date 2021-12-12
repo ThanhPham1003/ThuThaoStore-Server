@@ -9,7 +9,11 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required:true,
   },
-  price:{
+  cost:{
+    type: Number,
+    required: true,
+  },
+  sell:{
     type: Number,
     required: true,
   },
@@ -22,6 +26,10 @@ const ProductSchema = new mongoose.Schema({
     required:true,
   },
   daysubmitted:{
+    type: String,
+    required:true,
+  },
+  status:{
     type: String,
     required:true,
   },

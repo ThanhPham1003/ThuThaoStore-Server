@@ -15,6 +15,10 @@ const OrderSchema = new mongoose.Schema({
     },
     phone:{
         type: String,
+        required: true,
+    },
+    clientid:{
+        type: String,
         required:true,
     },
     type:{
@@ -22,6 +26,18 @@ const OrderSchema = new mongoose.Schema({
         required:true,
     },
     amount:{
+        type: Number,
+        required: true,
+    },
+    deposit:{
+        type: Number,
+        required: true,
+    },
+    costs:{
+        type: Number,
+        required: true,
+    },
+    sells:{
         type: Number,
         required: true,
     },

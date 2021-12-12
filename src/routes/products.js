@@ -36,18 +36,20 @@ router.post('/allproducts', upload.single('productImage'),async (req, res) => {
   const product = new Product({
         uid : req.body.uid,
         name: req.body.name,
-        price: req.body.price,
+        cost: req.body.cost,
+        sell: req.body.sell,
         code: req.body.code,
         orderquantity: req.body.orderquantity,
         daysubmitted: req.body.daysubmitted,
+        status: req.body.status,
         url:req.file.path,
     });
-    res.send("succesfull");
+
   try{
     const saveProduct = await product.save();
-    res.json(saveProduct);
+    res.send("Succesfully");
   }catch(err){
-    res.json({message: err});
+    res.send({message: err});
   }
 })
 
@@ -62,17 +64,16 @@ router.get('/:productID', async (req, res) => {
         console.log('Connect to product')
         res.json(product);
     }catch(err){
-        res.json({message: err});
+       res.json({message: err});
     }
 })
 
 router.delete('/:productID', async (req,res) => {
   try{
     const removeProduct = await Product.deleteOne({_id: req.params.productID});
-    console.log("Deleted.")
-    res.json(removeProduct)
+    res.send("Deleted.")
   } catch(err){
-    res.json({message: err});
+    res.send({message: err});
   }
 });
 
@@ -81,17 +82,18 @@ router.patch('/:productID', async (req, res) =>{
     const updateProduct = await Product.updateMany(
       {_id: req.params.productID},
       { $set:{
-        name: req.body.headers.name,
-        orderquantity: req.body.headers.orderquantity,
-        code: req.body.headers.code,
-        daysubmitted: req.body.headers.daysubmitted,
-        price: parseInt(req.body.headers.price),
+        name: req.body.name,
+        orderquantity: req.body.orderquantity,
+        code: req.body.code,
+        daysubmitted: req.body.daysubmitted,
+        cost: parseInt(req.body.cost),
+        sell: parseInt(req.body.sell)
       }}
 
     );
-    res.json("33333", updateProduct)
+    res.send("Updated")
   }catch(err){
-    res.json({message: err});
+    res.send({message: err});
   }
 });
 
