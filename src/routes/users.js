@@ -38,8 +38,9 @@ router.post('/',  uploadUsers.single('userImage'),async (req, res) => {
       email: req.body.email,
       name: req.body.name,
       age: req.body.age,
-      url: req.file.path
-
+      url: req.file.path,
+      lastsells: 0,
+      currentsells: 0
     });
     res.send("Successfully");
   try{
@@ -49,14 +50,12 @@ router.post('/',  uploadUsers.single('userImage'),async (req, res) => {
    res.json({message: err});
   }
 })
-router.post('/:uid',  uploadUsers.single('userImage'),async (req, res) => {
+router.patch('/updatesells/:uid',async (req, res) => {
   try{
-    const updateUser = await User.updateMany(
+    const updateUser = await User.updateOne(
       {_id: req.params.uid},
       { $set:{
-        name: req.body.name,
-        age: req.body.age,
-        url: req.file.path,
+        currentsells: req.body.currentsells
       }}
 
     );
@@ -65,7 +64,7 @@ router.post('/:uid',  uploadUsers.single('userImage'),async (req, res) => {
     res.send(err);
   }
 })
-router.patch('/:uid', uploadUsers.single('userImage'), async (req, res) =>{
+router.post('/:uid', uploadUsers.single('userImage'), async (req, res) =>{
   try{
     const updateUser = await User.updateMany(
       {_id: req.params.uid},

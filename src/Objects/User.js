@@ -22,6 +22,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  lastsells:{
+    type: String,
+    required: true,
+  },
+  currentsells:{
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('users', UserSchema);
