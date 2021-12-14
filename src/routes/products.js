@@ -38,6 +38,7 @@ router.post('/allproducts', upload.single('productImage'),async (req, res) => {
         name: req.body.name,
         cost: req.body.cost,
         sell: req.body.sell,
+        ctvprice: req.body.ctvprice,
         code: req.body.code,
         orderquantity: req.body.orderquantity,
         daysubmitted: req.body.daysubmitted,
@@ -87,7 +88,8 @@ router.patch('/:productID', async (req, res) =>{
         code: req.body.code,
         daysubmitted: req.body.daysubmitted,
         cost: parseInt(req.body.cost),
-        sell: parseInt(req.body.sell)
+        sell: parseInt(req.body.sell),
+        ctvprice: parseInt(req.body.ctvprice),
       }}
 
     );
