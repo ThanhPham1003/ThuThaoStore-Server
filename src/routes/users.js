@@ -7,22 +7,29 @@ const admin = require('../config/firebase-config');
 const multer = require ('multer');
 const path = require('path');
 const schedule = require('node-schedule');
-const date = new Date(2021,12,14,11,32,0);
+const date = new Date('2021-12-14T13:23:00.000+7:00');
+const rule = new schedule.RecurrenceRule();
+rule.date = 1;
+rule.tz = 'Etc/GMT+7'
 
-const job = schedule.scheduleJob(date, async function() {
+const job = schedule.scheduleJob(rule, async function() {
   console.log("In Schedule")
   try{
-    const updateUser = await User.updateMany({},{
-      $set:{
-        lastsells: $currentsells,
-        currentsells: 0,
-      }
-    });
+    const updateUser = (await User.find()).forEach(async(doc) =>{
+      const previousSells = doc.currentsells;
+      const updateCells =await User.updateOne({_id: doc._id},
+        {$set:{
+          lastsells : previousSells,
+          currentsells : 0,
+        }}
+        )
+    })
     console.log("Updated sells");
   }catch(err){
     console.log("77777", err);
   }
 })
+
 
 const storage = multer.diskStorage({
   destination: function(req,file,cb){
@@ -35,7 +42,6 @@ const storage = multer.diskStorage({
 
 const uploadUsers = multer({storage: storage});
 router.use(middleware.decodeToken);
-
 router.get('/', async (req, res) =>{
   res.send('Successfully');
 })
