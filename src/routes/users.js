@@ -10,7 +10,9 @@ const schedule = require('node-schedule');
 const date = new Date('2021-12-14T13:23:00.000+7:00');
 const rule = new schedule.RecurrenceRule();
 rule.date = 1;
-rule.tz = 'Etc/GMT+7'
+rule.hour = 0;
+rule.minute = 0;
+rule.tz = 'Etc/UTC'
 
 const job = schedule.scheduleJob(rule, async function() {
   console.log("In Schedule")
