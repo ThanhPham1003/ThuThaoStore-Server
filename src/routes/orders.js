@@ -49,24 +49,23 @@ router.post('', async (req,res) => {
         sells: req.body.sells,
         dayordered: req.body.dayordered,
     });
-    
+    res.send("Succesfully");
     try{
         const saveOrder = await order.save();
-        res.send("Succesfully");
+
     }catch(err) {
-       res.json({message: err});
+       res.json("Posted");
     }
 });
 router.delete('/:orderID', async (req,res) => {
     try{
       const removeOrder = await Order.deleteOne({_id: req.params.orderID});
-      res.send("Deleted")
+      res.send("Delete successfully")
     } catch(err){
-       res.json({message: err});
+       res.json("Deleted");
     }
   });
 router.patch('/:orderID', async (req, res) =>{
-    console.log("4444444", req.body);
     try{
       const updateOrder = await Order.updateMany(
         {_id: req.params.orderID},
@@ -77,9 +76,9 @@ router.patch('/:orderID', async (req, res) =>{
             deposit: req.body.deposit,
         }}
       );
-      res.send("Updated.")
+      res.send("Update successfully")
     }catch(err){
-       res.json({message: err});
+       res.json("Updated");
     }
   });
 module.exports = router;

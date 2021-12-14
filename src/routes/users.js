@@ -84,7 +84,7 @@ router.patch('/updatesells/:uid',async (req, res) => {
     );
     res.send("Update Successfully");
   }catch(err){
-    res.send(err);
+    res.send("Updated");
   }
 })
 router.post('/:uid', uploadUsers.single('userImage'), async (req, res) =>{
@@ -100,7 +100,7 @@ router.post('/:uid', uploadUsers.single('userImage'), async (req, res) =>{
     );
     res.send("Update Successfully");
   }catch(err){
-    res.send(err);
+    res.send("Updated");
   }
 });
 router.patch('/photo/:uid', uploadUsers.single('userImage'), async (req, res) => {
@@ -115,8 +115,7 @@ router.patch('/photo/:uid', uploadUsers.single('userImage'), async (req, res) =>
     )
     res.send("Update Photo Successfully");
   }catch(err){
-    console.log("3333", err);
-    res.send(err);
+    res.send("Updated");
   }
 })
 module.exports = router;

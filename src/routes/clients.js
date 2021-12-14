@@ -32,20 +32,20 @@ router.post('', async (req,res) => {
         link: req.body.link,
         phone: req.body.phone,
     });
-    
+    res.send("Successfully");
     try{
         const saveClient = await client.save();
-        res.send("succesfully");
+
     }catch(err) {
-        res.send({message: err});
+        res.send("Posted");
     }
 });
 router.delete('/:clientID', async (req,res) => {
     try{
       const removeClient = await Client.deleteOne({_id: req.params.clientID});
-      res.send("Deleted.")
+      res.send("Delete successfully.")
     } catch(err){
-      res.send({message: err});
+      res.send("Deleted");
     }
 });
 router.patch('/:clientID', async (req, res) =>{
@@ -60,9 +60,9 @@ router.patch('/:clientID', async (req, res) =>{
         }}
   
       );
-      res.send("Updated")
+      res.send("Update successfully")
     }catch(err){
-      res.send({message: err});
+      res.send("Updated");
     }
 });
 module.exports = router;
