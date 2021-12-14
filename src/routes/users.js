@@ -7,9 +7,9 @@ const admin = require('../config/firebase-config');
 const multer = require ('multer');
 const path = require('path');
 const schedule = require('node-schedule');
-const date = new Date(2021,12,14,11,25,0);
+const date = new Date(2021,12,14,11,30,0);
 
-const job = schedule.scheduleJob(date, function(){
+const job = schedule.scheduleJob(date, async function() => {
   console.log("In Schedule")
   try{
     const updateUser = await User.updateMany({},{
