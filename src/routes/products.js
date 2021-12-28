@@ -31,7 +31,7 @@ router.get('/allproducts', async (req, res) =>{
   }
 })
 
-router.post('/allproducts', upload.single('productImage'),async (req, res) => {
+router.post('/allproducts',async (req, res) => {
   console.log("44444", req.file.path)  
   const product = new Product({
         uid : req.body.uid,
@@ -43,7 +43,7 @@ router.post('/allproducts', upload.single('productImage'),async (req, res) => {
         orderquantity: req.body.orderquantity,
         daysubmitted: req.body.daysubmitted,
         status: req.body.status,
-        url:req.file.path,
+        url:req.body.url,
     });
     res.send("Successfully");
   try{
