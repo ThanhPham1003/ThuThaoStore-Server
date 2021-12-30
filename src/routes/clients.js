@@ -37,7 +37,7 @@ router.post('', async (req,res) => {
         const saveClient = await client.save();
 
     }catch(err) {
-        res.send("Posted");
+        res.send("Error with post client");
     }
 });
 router.delete('/:clientID', async (req,res) => {
@@ -45,7 +45,7 @@ router.delete('/:clientID', async (req,res) => {
       const removeClient = await Client.deleteOne({_id: req.params.clientID});
       res.send("Delete successfully.")
     } catch(err){
-      res.send("Deleted");
+      res.send("Error with delete client");
     }
 });
 router.patch('/:clientID', async (req, res) =>{
@@ -62,7 +62,7 @@ router.patch('/:clientID', async (req, res) =>{
       );
       res.send("Update successfully")
     }catch(err){
-      res.send("Updated");
+      res.send("Error with update Client");
     }
 });
 module.exports = router;

@@ -54,7 +54,7 @@ router.post('', async (req,res) => {
         const saveOrder = await order.save();
 
     }catch(err) {
-       res.json("Posted");
+       res.send("Error with post order");
     }
 });
 router.delete('/:orderID', async (req,res) => {
@@ -62,7 +62,7 @@ router.delete('/:orderID', async (req,res) => {
       const removeOrder = await Order.deleteOne({_id: req.params.orderID});
       res.send("Delete successfully")
     } catch(err){
-       res.json("Deleted");
+       res.send("Error with delete order");
     }
   });
 router.patch('/:orderID', async (req, res) =>{
@@ -78,7 +78,7 @@ router.patch('/:orderID', async (req, res) =>{
       );
       res.send("Update successfully")
     }catch(err){
-       res.json("Updated");
+       res.send("Error with update order");
     }
   });
 module.exports = router;

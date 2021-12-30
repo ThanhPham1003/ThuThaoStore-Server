@@ -57,24 +57,24 @@ router.get('/:uid', async (req,res) => {
 }
 })
 
-router.post('/',  uploadUsers.single('userImage'),async (req, res) => {
-    const user = new User({
-      _id: req.body.uid,
-      email: req.body.email,
-      name: req.body.name,
-      age: req.body.age,
-      url: req.file.path,
-      lastsells: 0,
-      currentsells: 0
-    });
-    res.send("Successfully");
-  try{
-    const saveUser = await user.save();
-    res.json(saveUser);
-  }catch(err){
-   res.json({message: err});
-  }
-})
+// router.post('/',  uploadUsers.single('userImage'),async (req, res) => {
+//     const user = new User({
+//       _id: req.body.uid,
+//       email: req.body.email,
+//       name: req.body.name,
+//       age: req.body.age,
+//       url: req.file.path,
+//       lastsells: 0,
+//       currentsells: 0
+//     });
+    
+//   try{
+//     const saveUser = await user.save();
+//     res.send("Successfully");
+//   }catch(err){
+//    res.send("Error with post user")
+//   }
+// })
 router.patch('/updatesells/:uid',async (req, res) => {
   try{
     const updateUser = await User.updateOne(
@@ -86,38 +86,38 @@ router.patch('/updatesells/:uid',async (req, res) => {
     );
     res.send("Update Successfully");
   }catch(err){
-    res.send("Updated");
+    res.send("Error with update sell");
   }
 })
-router.post('/:uid', uploadUsers.single('userImage'), async (req, res) =>{
+router.post('/:uid', async (req, res) =>{
   try{
     const updateUser = await User.updateMany(
       {_id: req.params.uid},
       { $set:{
         name: req.body.name,
         age: req.body.age,
-        url: req.file.path,
+        url: req.body.url,
       }}
 
     );
     res.send("Update Successfully");
   }catch(err){
-    res.send("Updated");
+    res.send("Error with update user");
   }
 });
-router.patch('/photo/:uid', uploadUsers.single('userImage'), async (req, res) => {
-  console.log("44444", req);
-  try{
-    const updateUser = await User.updateOne(
-      {_id: req.params.uid},
-      { $set:{
-        url: req.file.path,
+// router.patch('/photo/:uid', uploadUsers.single('userImage'), async (req, res) => {
+//   console.log("44444", req);
+//   try{
+//     const updateUser = await User.updateOne(
+//       {_id: req.params.uid},
+//       { $set:{
+//         url: req.file.path,
 
-      }}
-    )
-    res.send("Update Photo Successfully");
-  }catch(err){
-    res.send("Updated");
-  }
-})
+//       }}
+//     )
+//     res.send("Update Photo Successfully");
+//   }catch(err){
+//     res.send("Error with update user");
+//   }
+// })
 module.exports = router;

@@ -32,7 +32,7 @@ router.get('/allproducts', async (req, res) =>{
 })
 
 router.post('/allproducts',async (req, res) => {
-  console.log("44444", req.file.path)  
+  console.log('vvvvvvvvv', req.body.url);
   const product = new Product({
         uid : req.body.uid,
         name: req.body.name,
@@ -45,12 +45,13 @@ router.post('/allproducts',async (req, res) => {
         status: req.body.status,
         url:req.body.url,
     });
-    res.send("Successfully");
+
   try{
     const saveProduct = await product.save();
-
+    res.send("Successfully");
   }catch(err){
-    res.send("Posted");
+    console.log('555555555', err);
+    res.send("Error with post product");
   }
 })
 
@@ -74,7 +75,7 @@ router.delete('/:productID', async (req,res) => {
     const removeProduct = await Product.deleteOne({_id: req.params.productID});
     res.send("Delete successfully")
   } catch(err){
-    res.send("Deleted");
+    res.send("Error with Delete Product");
   }
 });
 
@@ -95,7 +96,7 @@ router.patch('/:productID', async (req, res) =>{
     );
     res.send('Update successfully')
   }catch(err){
-    res.send("Updated");
+    res.send("Error with update product");
   }
 });
 
