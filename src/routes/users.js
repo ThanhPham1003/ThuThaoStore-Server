@@ -100,6 +100,7 @@ router.post('/:uid', async (req, res) =>{
       }}
 
     );
+    console.log("33333", updateUser),
     res.send("Update Successfully");
   }catch(err){
     res.send("Error with update user");
