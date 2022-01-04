@@ -25,6 +25,7 @@ router.get('/:phone', async (req,res) => {
     }
 })
 router.post('', async (req,res) => {
+
     const client = new Client({
         uid: req.body.uid,
         name: req.body.name,
@@ -32,10 +33,10 @@ router.post('', async (req,res) => {
         link: req.body.link,
         phone: req.body.phone,
     });
-    res.send("Successfully");
+
     try{
         const saveClient = await client.save();
-
+        res.send("Successfully");
     }catch(err) {
         res.send("Error with post client");
     }
