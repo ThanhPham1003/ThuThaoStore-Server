@@ -97,6 +97,7 @@ router.patch('/:productID', async (req, res) =>{
     res.send('Update successfully')
   }catch(err){
     res.send("Error with update product");
+    console.log("5555555", err)
   }
 });
 

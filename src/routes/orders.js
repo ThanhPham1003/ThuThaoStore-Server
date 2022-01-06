@@ -39,8 +39,6 @@ router.post('', async (req, res) => {
         productname: req.body.productname,
         productid: req.body.productid,
         clientid: req.body.clientid,
-        phone: req.body.phone,
-        clientname: req.body.clientname,
         type: req.body.type,
         amount: req.body.amount,
         deposit: req.body.deposit,

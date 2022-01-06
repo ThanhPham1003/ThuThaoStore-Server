@@ -15,14 +15,23 @@ router.get('', async (req,res) => {
        res.json({message: err});
     }
 })
-router.get('/:phone', async (req,res) => {
-    try{
-        const client = await Client.findOne({"phone" : req.params.phone});
-        console.log('Connect to client')
-        res.json(client);
-    }catch(err){
-       res.json({message: err});
-    }
+// router.get('/:phone', async (req,res) => {
+//     try{
+//         const client = await Client.findOne({"phone" : req.params.phone});
+//         console.log('Connect to client')
+//         res.json(client);
+//     }catch(err){
+//        res.json({message: err});
+//     }
+// })
+router.get('/:clientID', async (req,res) => {
+  try{
+      const client = await Client.findById(req.params.clientID);
+      console.log('Connect to client')
+      res.json(client);
+  }catch(err){
+     res.json({message: err});
+  }
 })
 router.post('', async (req,res) => {
 

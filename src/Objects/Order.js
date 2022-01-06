@@ -9,14 +9,6 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required:true,
     },
-    clientname:{
-        type: String,
-        required:true,
-    },
-    phone:{
-        type: String,
-        required: true,
-    },
     clientid:{
         type: String,
         required:true,
