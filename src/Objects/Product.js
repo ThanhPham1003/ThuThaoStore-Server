@@ -5,33 +5,45 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  name:{
+  tenSP: {
     type: String,
-    required:true,
+    require: true,
   },
-  cost:{
-    type: Number,
-    required: true,
-  },
-  sell:{
-    type: Number,
-    required: true,
-  },
-  ctvprice:{
-    type: Number,
-    required: true,
-  },
-  code:{
+  code: {
     type: String,
-    required:true,
+    require: true,
   },
-  orderquantity:{
+  giaNhap: {
     type: String,
-    required:true,
+    require: true,
   },
-  daysubmitted:{
+  giaBanLe: {
     type: String,
-    required:true,
+    require: true,
+  },
+  giaCTV: {
+    type: String,
+    require: true,
+  },
+  soluongNhap: {
+    type: String,
+    require: true,
+  },
+  soluongBanLe: {
+    type: String,
+    require: true,
+  },
+  soluongBanCTV: {
+    type: String,
+    require: true,
+  },
+  noiNhap: {
+    type: String,
+    require: true,
+  },
+  ngayDang: {
+    type: String,
+    require: true,
   },
   status:{
     type: String,

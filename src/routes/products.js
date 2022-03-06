@@ -23,7 +23,7 @@ router.get('', async (req, res) => {
 })
 router.get('/allproducts', async (req, res) =>{
   try{
-      const products = await Product.find();
+      const products = await Product.find({status: '1'});
       res.json(products);
   }
   catch(err){
@@ -31,17 +31,28 @@ router.get('/allproducts', async (req, res) =>{
   }
 })
 
+router.get('/histories', async (req,res) =>{
+  try{
+    const histories = await Product.find({status: '0'});
+    res.json(histories);
+  }catch(err){
+    res.json({message: err});
+  }
+})
+
 router.post('/allproducts',async (req, res) => {
-  console.log('vvvvvvvvv', req.body.url);
   const product = new Product({
         uid : req.body.uid,
-        name: req.body.name,
-        cost: req.body.cost,
-        sell: req.body.sell,
-        ctvprice: req.body.ctvprice,
+        tenSP: req.body.tenSP,
         code: req.body.code,
-        orderquantity: req.body.orderquantity,
-        daysubmitted: req.body.daysubmitted,
+        giaNhap: req.body.giaNhap,
+        giaBanLe: req.body.giaBanLe,
+        giaCTV: req.body.giaCTV,
+        soluongNhap: req.body.soluongNhap,
+        soluongBanLe: req.body.soluongBanLe,
+        soluongBanCTV: req.body.soluongBanCTV,
+        noiNhap: req.body.noiNhap,
+        ngayDang: req.body.ngayDang,
         status: req.body.status,
         url:req.body.url,
     });
@@ -85,21 +96,41 @@ router.patch('/:productID', async (req, res) =>{
       {_id: req.params.productID},
       { $set:{
         name: req.body.name,
-        orderquantity: req.body.orderquantity,
+        // orderquantity: req.body.orderquantity,
+        // code: req.body.code,
+        // daysubmitted: req.body.daysubmitted,
+        // cost: parseInt(req.body.cost),
+        // sell: parseInt(req.body.sell),
+        // ctvprice: parseInt(req.body.ctvprice),
+        tenSP: req.body.tenSP,
         code: req.body.code,
-        daysubmitted: req.body.daysubmitted,
-        cost: parseInt(req.body.cost),
-        sell: parseInt(req.body.sell),
-        ctvprice: parseInt(req.body.ctvprice),
+        giaNhap: req.body.giaNhap,
+        giaBanLe: req.body.giaBanLe,
+        giaCTV: req.body.giaCTV,
+        soluongNhap: req.body.soluongNhap,
+        soluongBanLe: req.body.soluongBanLe,
+        soluongBanCTV: req.body.soluongBanCTV,
+        noiNhap: req.body.noiNhap,
+        ngayDang: req.body.ngayDang,
       }}
 
     );
     res.send('Update successfully')
   }catch(err){
     res.send("Error with update product");
-    console.log("5555555", err)
   }
 });
+
+  router.patch('/status/:productID', async (req, res) => {
+    try{
+      const soldOut = await Product.updateOne(
+        {_id: req.params.productID},
+        {$set:{status: req.body.status}})
+      res.send('Sold Out');
+    }catch(err){
+      res.send("Error with sold out");
+    }
+  })
 
 
 

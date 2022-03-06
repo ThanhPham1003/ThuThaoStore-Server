@@ -49,6 +49,7 @@ router.get('/', async (req, res) =>{
 })
 
 router.get('/:uid', async (req,res) => {
+  console.log("333333");
   try{
     const user = await User.findById(req.params.uid);
     res.json(user);
@@ -76,6 +77,7 @@ router.get('/:uid', async (req,res) => {
 //   }
 // })
 router.patch('/updatesells/:uid',async (req, res) => {
+  console.log("555555");
   try{
     const updateUser = await User.updateOne(
       {_id: req.params.uid},
